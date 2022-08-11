@@ -1,0 +1,2256 @@
+1.程序（Program）
+
+	是为实现特定目标或解决特定问题而用计算机语言编写的命令序列的集合
+	是为了模拟现实世界，解决现实问题而使用计算机语言编写的指令集合
+
+2.	public：语法提供的关键字，表示公共类
+	class：语法提供的关键字，表示定义一个类
+
+3.	文档注释：/**   */
+
+4.	javadoc -private -d api *.*
+
+5.Java的执行机制
+
+	先编译、再解释:
+	将源文件编译成字节码文件（平台中立文件.class），
+	再将字节码文件进行解释执行。
+	Java的设计理念：Write Once Run Anywhere
+
+6.类的概述
+
+	1.同一个源文件中可以定义多个类。
+	2.编译后，每个类都会生成独立的.class文件。
+	3.一个类中，只能有一个主方法，每个类都可以有自己的主方法。
+	4.public修饰的类称为公开类，要求类名必须与文件名称完全相同，包括大小写。
+	5.一个源文件中，只能有一个公开类。
+
+7.Package(包)
+
+	作用：类似于文件夹，用于管理字节码（.class）文件。
+	语法：package 包名;
+	位置：必须写在源文件的第一行。
+	带包编译：java -d . 源文件名称.java（自动生成目录结构）
+	带包运行：java 包名.类名（包名+类名又称全限定名）
+	采用域名倒置的规则：baidu.com->com.baidu.xxx
+	例如：cn.qfedu.project.module.XxxClass
+
+8.编码规范：
+
+	Tab缩进
+	层级之间必须缩进（Tab:一个制表位）。
+	一行只写一句代码。
+	Java标识符命名规则
+		1.由字母、数字、下划线（_）和美元符号（$）组成，不能以数字开头。
+		2.区分大小，长度无限制。
+		3.不能是Java中的关键字和保留关键字。
+		4.标识符命名习惯：驼峰名法、见名知意。以单词或单词组合来命名。
+		5.类名由一个或多个单词组成，每个单词首字母大写。
+		6.函数名、变量名有一个或多个单词组成，首单词首字母小写，拼接词首字母小写。
+		7.包名全小写，只可以使用特殊字符“.”开头或结尾。
+
+9.变量的概念
+
+	概念：计算机内存中的一块存储单元，是存储数据的基本单元。
+
+10.	Java是强类型语言，变量的类型必须与数据类型一致。
+
+11.转义字符
+
+	\n 换行，将当前位置移到下一行开头
+	\r 回车，将当前位置移到本行开头
+	\t 水平制表（跳到下一个TAB位置）
+	\\ 表示一个反斜杠字符'\'
+	\" 表示一个双引号字符
+	\u开头表示的是一个Unicode码的字符
+
+12.	int为整数的默认类型，如需为long类型赋值较大整数时，需在值的后面追加“L” 
+	double为浮点数的默认类型，如需为float类型赋值时，需要在值的后面追加“F”
+
+13.	ASCII（American Standard Code for Information Interchange）
+	美国信息交换标准代码
+	Unicode（万国码）是计算机科学领域的一项业界标准，包括字符集、编码方案等。
+
+14.类型转换
+
+	自动类型转换：
+		·两种类型相互兼容
+		·目标类型大于原类型
+	强制类型转换：
+		·两种类型相互兼容
+		·目标类型小于源类型
+
+15.进制的类型
+
+	计算机进制通常有：十进制、二进制、八进制、十六进制。
+
+16.	计算机只能处理二进制的数据和指令。
+
+17.计算机中信息的存储单位
+
+	位（Bit）：表示一个二进制数码0或1，是计算机存储处理信息的最基本的单位。
+	字节（Byte）：一个字节由8个位组成，它表示作为一个完整处理单位的8个二进制数码。
+
+	八进制转换成二进制:
+	只需将每个八进制数字替换为相对应的三个二进制位即可。
+	现在的计算机系统很少用八进制的了。
+
+	十六进制
+	基数为十六，逢十六进一。它用abcdef表示从0-9之上的值
+	Java中十六进制数据要以0x或0X开头。如：0x23D
+	十六进制转换成二进制只需要将每个十六进制数字替换为相对应的四个二进制位即可
+
+18.	原码：是最简单的机器数表示法。用最高位表示符号位，‘1’表示负号，‘0’表示正号。
+
+	其他位存放该数的二进制的绝对值。
+
+	原码最大的问题就在于一个数加上他的相反数不等于零
+
+	反码：正数的反码还是等于原码，负数的反码就是它的原码除符号位外，按位取反。
+
+	补码：正数的补码等于它的原码。负数的补码等于：反码+1。（这只是一种算补码的方式）【最左位】是符号位：该位是0，表示数值为正数；该位为1，表示数值为负数。
+
+	计算机采用补码形式存储数据的原因是运算正确，使用补码，还可以将符号位和其他位统一处理。
+
+19.进制转换
+
+	二进制数转换成十进制数：
+	按权相加：把二进制数首先写成加权系数展开式，然后按十进制加法规则求和。
+
+	十进制转换成二进制：
+
+		整数部分：
+			”除2取余，逆序排列“法
+		小数部分：
+			”乘2取整，顺序排序“--直到达到题目要求精度
+
+20.表达式是由变量、常量运算符组成的式子
+
+21.运算符
+
+	运算符用于执行程序代码运算，会针对一个以上操作数项目进行运算。
+
+	运算符的七大类：
+		1.算数运算符
+		2.赋值运算符
+		3.关系运算符
+		4.逻辑运算符
+		5.位运算符:对两个操作数中的每一个二进制位都进行计算
+		6.位移运算符：
+
+			左移：a<<b;将二进制形式的a逐位左移b位，最低位空出的b位补0
+			带符号右移：a>>b;将二进制形式的a逐位右移b位，最高位空出的b位补原来的符号位
+			无符号右移：a>>>b;将二进制形式的a
+		7.三目运算符 
+
+			++运算符：
+				如果是前缀，先对此变量加1，再执行其他的操作；
+				如果是后缀，先执行其他操作，再对此变量加1.
+
+			--运算符：
+
+				如果是前缀，先对此变量减1，再执行其他的操作；
+				如果是后缀，先执行其他操作，再对此变量减1.
+
+	经典面试题
+	short s;
+	s=s+1;
+	会报错：不兼容的类型：从int转换到short可能会有损失
+	short s;
+	s+=1;//s=(short)(s+1);由一个强制转换在这里
+
+22.从控制台接受输入的工具：
+
+	import java.util.Scanner;
+	Scanner input=Scanner(System.in);
+	int num=input.nextInt(); 
+
+23.	经典面试题：&和&&的区别
+
+		&两边的表达式都要计算；&&先计算左边的表达式，如果为真则再计算右边的表达式，如果为假就不需要计算
+	经典面试题
+
+		以最快的速度计算8*4结果？
+		8<<2
+
+24.方法重载（Overload）
+
+	在类中可以创建多个方法，它们具有相同的名字，但具有不同的定义；
+	返回值不能作为重载的条件
+
+25.递归
+
+	什么是递归？
+		解决具有既定规律的问题时，在方法内部再次调用自身方法的一种的编程方式。
+
+	何时使用递归？
+		当需要解决的问题可以拆分成若干个小问题，大小问题的解决方式相同，在方法中自己调用自己。
+		使用循环解决的常规问题，都可以替换为递归问题。
+	如何正确使用递归？
+		设置有效的出口条件，可以让调用链上的每个方法都可以正确返回，避免无穷递归。
+
+26.数组
+
+	概念：一组连续的存储空间，存储多个相同类型的值。
+	特点：1.类型相同2.长度固定
+
+	例：
+		int[] a=new int[5];
+
+	组成：
+		1.数组中的每个数据格被称为“数组元素”。
+		2.对每个元素进行赋值或取值的操作被称为“元素的访问“。
+		3.访问元素时，需要使用“下标”，（从0开始，依次+1，自动生成）。
+		4.访问的语法：数组名[下标]；//例如 存：a[0]=10; 取：a[0];
+
+	数组默认值：
+		整数：0
+		小数：0
+		字符：\u0000
+		布尔：false
+		其他：null
+
+	扩容（创建数组时，必须显示指定长度，并在创建之后不可更改长度。）
+
+		扩容的思路：
+
+			1.创建大于原数组长度的新数组。
+			2.将原数组中的元素依次复制到新数组中。
+		复制的方式：	
+			1.循环将原数组中的所有元素逐一赋值给新数组。
+			2.利用内置方法
+				两种方法：
+					1、System.arraycopy(原数组，原数组起始，新数组，新数组起始，长度);
+					2、java.util.Arrays.copyOf(原数组，新长度);//返回带有原值的新数组。
+		地址的替换：
+			数组作为引用类型之一，其变量中存储的是数组的地址。
+			完成元素复制后，需将新数组地址，赋值给原变量进行替换。
+
+	数组类型的参数
+		传递参数时：基本类型传递的是变量中的值；引用类型传递的是变量中的地址。
+	数组类型的返回值
+		调用数组类型返回值的方法时，方法执行后，返回的是数组的地址。
+
+27.可变长参数
+
+	概念：可接受多个同类型实参，个数不限，使用方式与数组相同。
+	语法：数据类型... 形参名//必须定义在形参列表的最后，且只能有一个。
+
+28.二维数组
+
+	概念：
+		一维数组中的一维数组
+	赋值:
+		使用双下标访问二维数组中的元素
+
+	第一个下标代表：行高（高维下标），第二个下标代表：列号（低维下标）
+
+	二维数组的内存分配
+		高维数组中的每一个元素，保存了低维数组的地址。访问array[0]等价于在访问一个地址
+
+29.什么是对象
+
+	面向对象思想（Object Oriented Programming）（简称OOP）：
+	一切客观存在的事物都是对象，万物皆对象。
+
+	任何对象一定具有自己的特征和行为。
+
+		特征：
+			称为属性，一般为名词，代表对象有什么。
+		行为：
+			称为方法，一般为动词，代表对象能做什么。
+
+	程序中的对象
+		现实中的对象多数来自于“模板”，程序中的对象也应该具有“模板”。
+
+30.类的抽象
+
+	在一组相同或相似的对象中，抽取出共性的特征和行为，保留所关注的部分。
+
+31.类与对象的关系
+
+	类：
+		定义了对象应具有的特征和行为，类是对象的模板。
+	对象：
+		拥有多个特征和行为的实体，对象是类的实体。
+
+32.类的定义
+
+	属性：
+		通过变量表示，又称实例变量。
+	语法：
+		数据类型 属性名;
+	位置：
+		类的内部，方法的外部。
+	方法：
+		通过方法表示，又称实例方法。
+	语法：
+		public 返回值类型 方法名(形参){
+		//方法的主体
+		}
+	注意：不再书写static，后续详解。
+
+33.实例变量
+
+	之前学习局部变量时，要求必须先赋值再使用，否则编译错误。
+	对于实例变量而言，未赋值并不会编译错误，能直接访问，实例变量会有默认值。
+
+34.实例变量的默认值：
+
+	整数：0
+	小数：0.0
+	字符：\u0000（空格）
+	布尔：false
+	其他：null
+
+35.实例变量与局部变量的区别
+
+	局部变量
+		定义位置：
+			方法或方法内的结构当中
+		默认值：
+			无默认值
+		使用范围：
+			从定义行到包含其结构结束
+		命名冲突：
+			不允许与局部变量重名
+
+	实例变量
+		定义位置：
+			类的内部，方法的外部
+		默认值：
+			字面值（与数组相同）
+		使用范围：
+			本类有效
+		命名冲突：
+			不允许与实例变量重名，可与局部变量重名，局部变量优先
+
+36.实例方法
+	
+	对象的实例方法包含两部分：
+		方法的声明和方法的实现
+
+			方法的声明：
+				代表对象能做什么
+					组成：
+						修饰符 返回值类型 方法名(形参列表)
+			方法的实现：
+				代表对象怎么做，即如何实现对应的功能
+					组成：
+						{逻辑代码}
+
+37.对象的定义格式
+
+	第一种：
+		先声明对象，再创建对象
+		例：
+			Horse qianlima = null;
+			qianlima = new Horse();
+	第二种：
+		声明并创建对象
+		例：
+			Horse qianlima = new Horse();
+	第三种：
+		匿名创建对象，并调用方法
+		例：
+			new Horse().printInfo();
+
+38.new关键字的作用
+
+	new关键字表示创建一个对象
+	new关键字表示实例化对象
+	new关键字表示申请内存空间
+
+39.对象的内存结构初探
+
+	基本数据类型 + 局部变量 ：
+		存储在栈内存当中
+	引用类型：
+		地址存储在栈内存当中
+		地址指向堆内存空间
+	
+	对象在内存当中的运行变化
+
+		1.对象在内存的结构，给对象的属性赋值
+
+			Horse horse = null;
+			这只是定义了一个变量而已，在栈内存和堆内存当中都不会存储数据
+			horse = new Horse();
+			申请一个堆内存空间，在堆内存空间当中分配一块内存来存储对象里面的相关值，
+			堆内存的地址存储在栈内存当中，该地址指向堆内存中的对象
+
+		2.在内存中创建多个对象，分别给两个对象的属性赋值
+
+			同1
+			
+
+		3.两个对象，一个实例化，一个没实例化，给没实例化的对象赋值
+
+			Horse horse1 = new Horse();
+			Horse horse2 = null;
+			horse2 = horse1;
+			这两个变量指向同一个对象
+
+		4.分别实例化两个对象，再进行相互赋值
+
+			Horse horse1 = new Horse();			
+			Horse horse2 = new Horse();			
+			horse2 = horse1;它修改了horse2栈内存的地址，是horse2变量对应的地址指向horse1的堆空间
+
+40.封装性
+
+	封装的必要性：
+
+		1.就目前的技术而言，并没有办法对属性的赋值加以控制
+		2.在对象的外部，为对象的属性赋值，可能存在非法数据的录入
+
+	什么是封装？
+		 
+		 概念：尽可能隐藏对象的内部实现细节，控制对象的修改及访问的权限。
+		 访问修饰符：private（可将属性修饰为私有，仅本类可见）
+
+		 公共访问方法
+
+			提供公共访问方法，以保证数据的正常录入
+			
+			命名规范：
+				赋值：
+					setXXX()//使用方法参数实现赋值
+					getXXX()//使用方法返回值实现取值
+		以访问方法的形式，进而完成赋值与取值的操作。
+		问题：依旧没有解决非法数据录入
+
+		过滤有效数据：
+
+			在公共的访问方法内部，添加逻辑判断，进而过滤掉非法数据，以保证数据安全。
+
+		例：
+			public class Test{
+
+				public static void main(String args[]){
+
+					SuperMan superman = new SuperMan();
+
+					superman.setZxc("");
+
+				}
+			}
+
+			class SuperMan{
+
+				String name;
+				private String zxc;
+				
+				//用来给属性赋值
+				public void setZxc(String zxc){
+
+					//this.zxc = zxc;//这里的this表示当前类的属性zxc
+
+					//在这里利用条件进行限制		
+					if(){}
+					else{}
+
+				}
+
+				//用来获取属性的值
+				public String getZxc(){
+
+					return zxc;
+
+				}
+			}
+
+		get/set方法：
+
+			get/set方法是外界访问对象私有属性的唯一通道，方法内部可对数据进行检测和过滤
+
+	封装思想总结：
+
+		1.封装性的概念：
+
+			封装性是面向对象思想的三大特征之一，封装就是隐藏实现细节，仅对外提供访问接口。
+
+			封装有：
+
+				属性的封装
+				方法的封装
+				类的封装
+				组件的封装
+				模块化封装
+				系统级封装
+
+		2.封装的好处：
+
+			模块化
+			信息隐藏
+			代码重用
+			具有安全性
+		
+		3.封装的缺点：
+
+			影响执行效率
+
+41.构造方法
+
+	基本概念：
+
+		类中的特殊方法，主要用于创建对象
+	
+	特点：
+
+		1.名称与类名完全相同
+		2.没有返回值类型
+		3.创建对象时，触发构造方法的调用，不可通过句点手动调用
+	
+	注：
+		如果没有在类中显示定义构造方法则编译器默认提供无参构造方法
+	
+	例：
+
+		public class Test{
+
+			public static void main(String[] args){
+
+				Car car = new Car();
+
+			}
+
+		}
+
+		class Car{
+
+			String name;
+			String color;
+			public Car(){
+
+			}
+
+		}
+
+	对象创建过程：
+
+		1.内存中开辟对象空间
+		2.为各个属性赋予初始值
+		3.执行构造方法中的代码
+		4.将对象的地址赋值给变量
+
+	重载：
+
+		例：
+			public class Test{
+
+			public static void main(String[] args){
+
+				Car car = new Car();//如果下面没有无参构造方法，只有有参构造方法，那这里就会导致编译错误：无参方法未定义
+				Car car1 = new Car("BMW");
+				Car car2 = new Car("BWM","aque");
+				//创建对象时，根据传入参数，匹配对应的构造方法
+				}
+
+			}
+
+			class Car{
+
+				String name = ;//可为属性赋默认值
+				String color = ;
+				public Car(){
+
+				}
+				public Car(String n){
+					name = n;
+				}
+				public Car(String n, String c){
+					name = n;
+					color = c;
+				}
+
+			}
+		
+	默认构造方法：
+
+		在类中，如果没有显示定义构造方法，则编译器默认提供无参构造方法
+		如已手动添加有参构造方法，则无参构造方法不再默认提供，可根据需求自动添加。
+
+42.this关键字
+
+	用于表示当前类的引用
+
+	this调用本类中的其他构造方法。如：this()、this(实参)
+
+	this()：调用无参构造
+	this(实参)：调用有参构造
+		注：必须在构造方法的首行，并确保有出口
+
+43.static关键字
+
+	静态属性：
+		是整个类共同持有的共享空间（一份），任何对象修改，都会影响其他对象
+
+	静态：
+
+		概念：
+			static修饰符
+
+		可以修饰属性和方法
+		使用static修饰的类属性、类方法称为静态属性、静态方法
+		静态成员是全类所有对象共享的成员
+		在全类中只有一份，不因创建多个对象而产生多份
+		不必创建对象，可直接通过类名访问
+	
+		特点：
+
+			1.静态方法允许直接访问静态成员
+			2.静态方法不能直接访问非静态成员
+			3.静态方法中不允许使用this或是super关键字
+			4.静态方法可以继承，不能重写、没有多态
+
+	动态代码块：
+
+		创建对象时，触发动态代码块的执行
+
+		执行地位：
+
+			初始化属性之后、构造方法代码之前
+		
+		作用：
+
+			可为实例属性赋值，或必要的初始行为
+	
+	类加载
+
+		JVM首次使用某个类时，需通过CLASSPATH查找该类的.class文件，将.class文件中对类的描述信息加载到内存中，进行保存，
+
+		如：
+			包名
+			类名
+			父类
+			属性
+			方法
+			构造方法
+
+		加载时机：
+			1.创建对象
+			2.创建子对象
+			3.访问静态属性
+			4.调用静态方法
+		
+		主动加载：
+
+			CLASS.forName("全限定名	")
+	
+	静态代码块：
+
+		类加载时，触发静态代码块的执行（仅一次）
+		执行地位：静态属性初始化之后
+		作用：可为静态属性赋值，或没必要的初始行为
+	
+	main方法分析
+
+		public static void main(String[] args){}
+	
+		public：共有的，最大的访问权限
+		static：静态的，无需创建对象
+		void：表示没有返回值，无需向JVM返回结果
+		main：方法名，固定的方法名
+		String[] args：表示参数为字符串数组，可以在调用方法时传入参数
+
+44.对象数组和管理
+
+	对象数组：
+
+		就是数组里的每个元素都是类的对象，赋值时先定义对象，然后将对象直接赋给数组
+	
+	僵尸监狱管理类案例练习：
+
+		要求：
+			用于管理多个僵尸对象，要求可以实现僵尸的动态添加、更新僵尸信息、删除僵尸，指定编号查找某一个僵尸信息
+		
+		class Zombie{
+
+			private String id;//编号
+			private int level;//等级
+			private int atk;//攻击
+			private int def;//防御
+
+			public String getId() {
+        		return id;
+    		}
+
+			public void setId(String id) {
+				this.id = id;
+			}
+
+			public int getLevel() {
+				return level;
+			}
+
+			public void setLevel(int level) {
+				this.level = level;
+			}
+
+			public int getAtk() {
+				return atk;
+			}
+
+			public void setAtk(int atk) {
+				this.atk = atk;
+			}
+
+			public int getDef() {
+				return def;
+			}
+
+			public void setDef(int def) {
+				this.def = def;
+			}
+
+		}
+
+		public class ZombieManagerTest{
+
+			public static void main(String[] args){
+
+
+
+			}
+
+		}
+
+45.继承
+
+	程序中的继承：
+		是类与类之间特征和行为的一种赠与或获得
+		两个类之间的继承关系，必须满足“is a”(包含)的关系
+	
+	父类的抽象
+
+		实战：
+
+			可根据程序需要使用到的多个具体类，进行共性抽取，进而定义父类
+		
+	继承的语法
+
+		语法：
+
+			class 子类 extends 父类{}//定义子类时，显示继承父类
+		
+		应用：
+
+			产生继承关系之后，子类可以使用父类中的属性和方法，也可定义子类独有的属性和方法
+		
+		好处：
+
+			及提高了代码的复用性，又提高了代码的可拓展性
+	
+	继承的特点：
+
+		Java为单继承，一个类只能有一个直接父类，但可以多级继承，属性和方法逐级叠加
+
+	不可继承：
+
+		构造方法：
+
+			类中的构造方法只负责创建本类对象，不可继承
+
+		private修饰的属性和方法：
+
+			访问修饰符的一种，仅本类可见
+
+		父子类不在同一个package中，default修饰的属性和方法：
+
+			访问修饰符的一种，仅同包可见
+		
+46.子类的实例化过程
+
+	在子类进行实例化操作的时候，首先会让其父类进行初始化操作，之后子类再进行实例化操作
+	
+	注：
+
+		所有的类都是Object类的直接或间接子类，Object类是所有类的父类
+
+	继承后的对象构建过程：
+
+		代码：
+
+			public class ObjectInstanceTest {
+				public static void main(String[] args) {
+					StarDuck d = new StarDuck();
+
+				}
+
+				}
+				class Animal{
+					String name;
+
+				}
+
+				class Duck extends Animal{
+					String color = "white";
+					public Duck(){
+						name = "yaya";
+
+					}
+				}
+
+				class StarDuck extends Duck{
+					double fee;
+					public StarDuck(){
+
+						fee = 300d;
+					}
+
+				}
+		
+		过程：
+
+			1.JVM会读取指定路径下的StarDuck.class文件，并加载进内存。并会先加载StarDuck的父类（如果有直接父类的情况下）
+			2.在堆内存空间开辟空间，分配地址
+			3.并在对象空间中，对对象中的属性进行默认初始化（不是显示初始化）
+			4.调用对应的构造函数进行初始化
+			5.在构造函数中，第一行会调用父类的构造函数进行初始化，再对子类的属性进行初始化，初始化完毕后，将地址值赋值给引用变量
+	
+	小结：
+
+		子类的实例化过程：
+
+			子类实例化时会先调用父类的构造方法
+			如果父类中没有默认的构造方法，在子类的构造方法中必须显示的调用父类的构造方法
+		
+		结论：
+
+			构造方法只是用于初始化类中的字段以及执行一些初始化代码
+			调用构造方法并不代表会生成对象
+
+47.方法的重写
+
+	方法重写原则：
+
+		方法名称、参数列表、返回值类型必须与父类相同。访问修饰符可与父类相同或是比父类更宽泛。
+	
+	方法重写的执行：
+
+		子类重写父类方法后，调用时优先执行子类重写后的方法
+
+		继承案例练习：
+
+			1.定义一个化妆品类（Cosmetic）name type price
+			2.定义一个化妆品管理类（CosmeticManager）
+				（1）实现进货功能
+				（2）可以输出所有化妆品信息功能
+			3.使用继承实现一个只输出国产化妆品的功能
+
+			import java.util.Arrays;
+
+			public class CosmeticManagerTest {
+				public static void main(String[] args) {
+
+					DomesticCosmeticManager cm = new DomesticCosmeticManager();
+					cm.add(new Cosmetic("Chanel","import",360.00d));
+					cm.add(new Cosmetic("Mary Deja","domestic",199.00d));
+					cm.add(new Cosmetic("Dabao SOD honey","domestic",39.90d));
+					cm.add(new Cosmetic("Yabang","domestic",69.90d));
+
+					cm.printInfo();
+				}
+			}
+
+			class DomesticCosmeticManager extends CosmeticManager{
+
+				//重写父类的方法，实现只输出国产化妆品
+				public void printInfo() {
+
+					for (int i = 0;i<count;i++){
+						if("domestic".equals(cs[i].getType())){
+							System.out.println(cs[i].getInfo());
+						}
+					}
+
+				}
+			}
+
+			//化妆品类
+			class Cosmetic{
+				private String name;//品牌
+				private String type;//进口或国产
+				private double price;//单价
+
+				//setter and getter method
+
+				public String getName() {
+					return name;
+				}
+
+				public void setName(String name) {
+					this.name = name;
+				}
+
+				public String getType() {
+					return type;
+				}
+
+				public void setType(String type) {
+					this.type = type;
+				}
+
+				public double getPrice() {
+					return price;
+				}
+
+				public void setPrice(double price) {
+					this.price = price;
+				}
+
+				public Cosmetic(){}
+
+				public Cosmetic(String name, String type, double price){
+					this.name = name;
+					this.type = type;
+					this.price = price;
+				}
+				public String getInfo(){;
+					return "name="+name+",type="+type+",price"+price;
+				}
+
+
+
+
+			}
+				//管理类
+			class CosmeticManager{
+
+				Cosmetic[] cs = null;
+					int count = 0;
+				public CosmeticManager(){
+					cs = new Cosmetic[5];
+				}
+
+				public CosmeticManager(int size){
+				if(size>0){
+					cs = new Cosmetic[size];
+				}else{
+					cs = new Cosmetic[5];
+				}
+
+				}
+
+				//进货功能
+
+				public void add(Cosmetic c){
+					int length = cs.length;
+
+					if(count>=length){
+						int newLen = length*2;
+						cs = Arrays.copyOf(cs, newLen);
+					}
+					cs[count] = c;
+					count++;
+
+				}
+
+				//打印所有信息
+				public void printInfo(){
+					for (int i = 0; i < count; i++) {
+						System.out.println(cs[i].getInfo());
+					}
+				}
+
+
+
+			}
+	
+	经典面试题
+
+		overloading与overriding	的区别？
+
+			overloading：重载，它发生在同一个类里面的多个方法，方法名相同
+			overriding：重写，它是发生在子类跟父类当中，子类去重写父类的当中，必须遵守访问修饰符必须要大于或是等于父类的访问修饰符，返回值类型相同，方法名相同，参数列表相同
+
+48.super和final关键字
+
+	super关键字：
+		在子类中，可直接访问从父类继承到的属性和方法，但如果父子类的属性或方法存在重名（属性遮蔽、方法重写）时，需要加以区分，才可专项访问
+
+	super访问方法
+
+		super关键字可在子类中访问父类的方法
+
+		使用“super.”的形式访问父类的方法，进而完成在子类中的复用；
+		再叠加额外的功能代码，组成新的功能
+	
+		例：
+
+			class SuperClass{
+
+				public int upload(){
+
+					//上传文件的20行代码
+				}
+			}
+
+			class ChildClass extends SuperClass{
+
+				public int upload(){
+					//上传文件的20行代码
+					super.upload();//表示调用父类中的方法
+					//把文件信息存入数据库
+				}
+			}
+		
+		super访问属性
+
+			父子类的同名属性不存在重写关系，两块空间同时存在（子类遮蔽父类属性），需使用不同的前缀进行访问
+			class SuperClass{
+				
+				int value = 10;
+			}
+
+			class ChildClass extends SuperClass{
+
+				int value = 20;
+				public void print(){
+
+					int value = 30;
+					System.out.println(value);
+					System.out.println(this.value);
+					System.out.println(super.value);
+				}
+			}
+			运行结果：
+
+				30
+				20
+				10
+	
+	super调用父类无参构造
+		
+		super()：表示调用父类无参构造方法
+		如果没有显示书写，隐式存在于子类构造方法的首行
+
+			例：
+
+				public class SuperKeywordTest {
+
+					public static void main(String[] args) {
+
+						JavaStar star = new JavaStar();
+					}
+				}
+
+				class Universe{
+
+					public Universe(){
+
+						System.out.println("universe");
+					}
+
+				}
+
+				class Star extends Universe{
+
+					public Star(){
+
+						super();
+						System.out.println("star");
+
+					}
+				}
+
+				class JavaStar extends Star{
+
+					public JavaStar(){
+
+						super();
+						System.out.println("JavaStar");
+					}
+				}
+			
+		super(实参)：表示调用父类有参构造方法
+
+	super小结：
+
+		1.super关键字的第一种用法：
+
+			在子类的方法中使用“super.”的形式访问父类的属性和方法
+
+				例：
+
+					super.父类属性、super.父类方法();
+		
+		2.super关键字的第二种用法：
+
+			在子类的构造方法的首行，使用“super()”或"super(实参)"，调用父类构造方法
+		
+		注：
+
+			如果子类构造方法中，没有显示定义super或super(实参)，则默认提供super()
+			同一个子类构造方法中，super()、this()不可同时存在
+		
+	final关键字
+
+		使用final关键字可以完成以下操作：
+
+			1.使用final关键字声明一个常量
+
+				修饰属性或者修饰局部变量（最终变量），也称为常量
+			
+			2.使用final关键字声明一个方法
+
+				该方法为最终方法，且只能被子类继承，不能被子类重写
+			
+			3.使用final关键字声明一个类
+
+				该类就转变为最终类，没有子类的类，final修饰的类无法被继承
+			
+		在方法参数中使用final关键字，在该方法内部不能修改参数的值（在内部类中详解）
+
+49.抽象类
+
+	应用：	
+
+		abstract修饰类，此类不能new对象
+	
+	被abstract修饰的类，称为抽象类
+	抽象类意为不够完整的类、不够具体的类
+	抽象类对象无法独立存在即不能new对象
+
+	作用：
+
+		可被子类继承，提供共性属性和方法
+		可声明为引用，更自然的使用多态
+	
+	经验：
+
+		抽象父类可作为子类的组成部分
+		依附于子类对象存在
+		由父类共性+子类独有组成完整的子类对象
+	
+	不该被实现的方法：
+
+		方法声明必要，方法实现多余
+	
+	抽象方法：
+
+		被abstract修饰的方法，称为抽象方法，只有方法声明，没有方法实现（{}的部分）
+		意为不完整的方法，必须包含在抽象类中
+
+		产生继承关系后，子类必须重写父类中所有的抽象方法，否则子类还是抽象类
+
+			public class AbstractClass {
+
+				public static void main(String[] args) {
+
+					Dog dog = new Dog();
+					dog.eat();
+					Cat cat = new Cat();
+					cat.eat();
+				}
+			}
+
+			abstract class Animal{
+
+				public abstract void eat();
+				public void sleep(){
+
+					System.out.println("Animal is sleeping");
+				}
+			}
+
+			class Dog extends Animal{
+
+				public void eat(){
+
+					System.out.println("dog is eating...");
+				}
+			}
+
+			class Cat extends Animal{
+
+				public void eat(){
+
+					System.out.println("cat is eating...");
+				}
+			}
+
+	小结：
+
+		abstract修饰类：不能new对象，但可以声明引用
+		abstract修饰方法：只有方法声明，没有方法实现（需包含在抽象类中）
+		抽象类中不一定有抽象方法，但有抽象方法的类一定是抽象类
+		子类继承抽象类后，必须重写父类中的所有抽象方法，否则子类还是抽象类
+
+50.万能的接口
+
+	接口的定义：
+
+		接口是一组行为的规范、定义，没有实现
+
+	例：
+		//没有构造方法，不能创建对象
+
+		interface MyInterface{
+		//使用interface关键字定义接口
+
+			//只能定义：公开静态常量、公开抽象方法
+			public String NAME = "Interface";
+			public abstract void method();
+		}	
+	
+	与抽象类的异同：
+
+		相同：
+
+			1.可编译成字节码文件
+			2.不能创建对象
+			3.可以作为引用类型
+			4.具备object类中所定义的方法
+		
+		不同：
+
+			1.所有的属性都是公开静态常量的，隐式使用public static final修饰
+			2.所有方法都是公开抽象方法，隐式使用public abstract修饰
+			3.没有构造方法、动态代码块、静态代码块
+		
+	什么是接口
+
+		概念：
+
+			接口是一种能力和约定
+		
+		接口的定义：
+
+			代表了某种能力
+		
+		方法的定义：
+
+			能力的具体要求
+
+		经验：
+
+			Java为单继承，当父类的方法种类无法满足子类的需求时，可实现接口扩充子类的能力
+		
+		接口支持多实现，可为类扩充多种能力
+	
+	接口的规范需要注意的点
+
+		任何类在实现接口时，必须实现接口中所有的抽象方法，否则此类为抽象类
+
+		实现接口中的抽象方法时，访问修饰符必须是public
+	
+	接口之间的多继承
+
+		Java类只能单继承，但接口之间可以多继承，一个类也可以实现多个接口
+		
+	常量接口
+
+		将多个常用于表示状态或固定值的变量，以静态常量的形式定义在接口中统一管理，提高代码可读性
+
+		使用接口定义系统常量，常量名通常是大写
+	
+	接口小结
+
+		接口的使用规则：
+
+			1.定义一个接口，使用interface关键字
+			2.在一个接口中，只能定义常量、抽象方法，JDK1.8后可以定义默认的实现方法
+			3.接口可以继承多个接口：
+
+				extends xxx , xxx;
+			
+			4.一个具体类实现接口使用implements关键字
+			5.一个类可以实现多个接口
+			6.抽象类实现接口可以不实现接口的方法
+			7.在接口中定义的方法没有声明访问修饰符，默认为public
+			8.接口不能有构造方法
+			9.接口不能实例化
+	
+	面向对象设计原则：
+
+		对修改关闭，对扩展开放面向接口编程
+	
+51.多态性
+
+	对象的多态
+
+		Java的多态是面向对象的三大特征之一，是指对象在运行过程中的多种形态
+
+		多态性我们大概可以分为两类：
+
+			1.方法的重载与重写
+			2.对象的多态性
+
+		例如：
+
+			//用父类的引用指向子类对象（用大的类型去接受小的类型，向上转型、自动转换）
+			Animal animal = new Dog();
+	
+		不同引用类型，仅可调用自身类型中所声明的方法
+	
+	设计模式之：
+
+		模板方法模式（templete method）：
+
+			定义一个操作中的算法的骨架，而将一些可变部分的实现延迟到子类中。
+			模版方法模式使得子类可以不改变一个算法的结构即可重新定义该算法的某些特定的步骤
+
+	设计模式之：
+
+		策略模式（Strategy Pattern）：
+
+			定义了一系列的算法，将每一种算法封装起来并可以相互替换使用，策略模式让算法独立于使用它的客户应用而独立变化
+
+	多态小结：	
+
+		1.方法的重载与重写就是方法的多态性的表现
+		2.多个子类就是父类中的多种形态
+		3.父类引用可以指向子类对象，自动转换
+		4.子类对象指向父类引用需要强制转换（注意：类型不对会报异常）
+		5.在实际开发中尽量使用父类引用（更利于扩展）
+
+		oo设计原理：
+
+			1.面向接口编程（面向抽象编程）
+			2.封装变化
+			3.多用组合，少用继承
+	
+52.instanceof关键字
+
+	向上转型（装箱）
+
+		父类引用中保存真实子类对象，称为向上转型（即多态核心概念）
+		父类引用指向子类对象，虽然是Animal类型的对象，但实际还是Duck类对象
+
+		注：
+
+			仅可调用Animal中所声明的属性和方法
+			public class Test3 {
+
+				public static void main(String[] args) {
+
+					Animal a = new Duck();
+					a.shout();
+				}
+			}
+
+			class Animal{
+
+				public void shout(){
+
+					System.out.println("the animal is shouting");
+				}
+			}
+
+			class Duck extends Animal{
+
+				public void shout(){
+
+					System.out.println("the duck is shouting");
+				}
+			}
+
+	向下转型（拆箱）
+
+		将父类引用中的真是子类对象，强转回子类本身类型，称为向下转型
+
+		注：
+
+			只有转换回子类真实类型，才可调用子类独有的属性和方法
+
+			public class Test3 {
+
+				public static void main(String[] args) {
+
+					Animal a = new Duck();
+					a.shout();
+
+					Duck b = (Duck) a;//强制转换，向下转型
+					b.shout();
+				}
+			}
+
+			class Animal{
+
+				public void shout(){
+
+					System.out.println("the animal is shouting");
+				}
+			}
+
+			class Duck extends Animal{
+
+				public void shout(){
+
+					System.out.println("the duck is shouting");
+				}
+
+				public void show(){
+
+					System.out.println("the duck is performing");
+				}
+			}
+
+	类型转换异常
+
+		向下转型时，如果父类引用中的子类对象类型和目标类型不匹配，则会发生类型转换异常
+	
+	instanceof关键字
+
+		instanceof适用于检查对象是否为指定的类型
+		通常在把父类引用强制转换为子类引用时要使用
+		以避免发生类型转换异常（ClassCastException）
+
+		语法格式如下：
+
+			对象 instanceof 类型（返回boolean类型值）
+	
+	父类的设计法则
+
+		1.父类通常情况下都涉及为抽象类或接口，其中优先考虑接口，如接口不能满足才考虑抽象类
+		2.一个具体的类尽可能不去继承另一个具体的类，这样的好处是无需检查对象是否为父类的对象
+
+53.Object类
+
+	Object类：
+
+		是类层次结构的根类
+	
+		每个类都使用Object作为超类。所有对象（包括数组）都实现这个类的方法
+		所有类都是Object类的子类
+
+		1.任何类没有书写extents继承某个类，都默认直接继承Object类，否则为间接继承
+		2.Object类中所定义的方法，是所有对象都具备的方法
+		3.Object可以存储任何对象。作为参数，可接受任何对象。作为返回值，可返回任何对象
+
+	getClass()方法
+
+		返回引用中存储的实际对象类型
+		应用：	
+
+			通常用于判断两个引用中实际存储对象类型是否一致
+		
+	hashCode()方法
+
+		返回该对象的十进制的哈希码值
+
+		哈希算法根据对象的地址或字符串或数字计算出来的int类型的数值
+		哈希码并不唯一，可保证相同对象返回相同哈希码
+		尽量保证不同对象返回不同哈希码
+	
+	toString()方法
+
+		返回该对象的字符串表示（表现形式）
+		可以根据程序需求覆盖该方法 
+	
+	equals()方法
+
+		默认实现为(this == obj),比较两个对象地址是否相同
+		可进行覆盖，比较两个对象的内容是否相同
+	
+		覆盖步骤
+
+			需求：
+
+				如何实现自定义类型中，判断两个对象是否相等，通过重写equals(Object obj)方法
+
+			1.比较两个引用是否指向同一个对象
+			2.判断obj是否为null
+			3.判断两个引用指向的实际对象类型是否一致
+			4.强制类型转换
+			5.依次比较各个属性值是否相同  
+	
+	finalize()方法
+
+		1.当对象被判定为垃圾对象时，由JVM自动调用此方法，用以标记垃圾对象，进入回收队列
+		2.垃圾对象：
+
+			没有有效引用指向此对象时，为垃圾对象
+		3.垃圾回收：
+
+			由GC销毁垃圾对象，释放数据存储空间
+		4.自动回收机制：
+		
+			JVM的内存耗尽，一次性回收所有垃圾对象
+		5.手动回收机制：
+
+			使用System.gc();通知JVM执行垃圾回收
+
+54.内部类
+
+	概念：
+
+		在一个类内部再定义一个完整的类
+
+	特点：
+
+		1.编译之后可生成独立的字节码文件
+		2.内部类可直接访问外部类的私有成员，而不破坏封装
+		3.可为外部类提供必要的内部功能组件
+	
+	分类：
+
+		1.成员内部类
+
+			1.在类的内部定义，与实例变量、实例方法同级别的类
+			2.外部类的一个实例部分，创建内部类对象时，必须依赖外部类对象
+
+				Outer out = new Outer();
+				Outer.Inner in = out.new Inner();
+
+			3.当外部类、内部类存在重名属性时，会优先访问内部类
+			4.成员内部类不能定义静态成员（因为成员内部类是要去依靠外部类对象去调用的）
+
+			例：
+
+				public class InnerClassTest {
+
+					public static void main(String[] args) {
+
+						Outer outer = new Outer();
+				//        Outer.Inner inner = outer.new Inner();
+				//        inner.print();
+						outer.innerPrint();
+					}
+				}
+
+				class Outer{
+
+					private String name = "Outer";
+
+					public void innerPrint(){
+
+						Inner inner = new Inner();
+						inner.print();
+					}
+					private class Inner{
+
+						public void print(){
+
+							System.out.println(name);
+						}
+
+					}
+
+				}
+		2.静态内部类
+
+			1.不依赖外部类对象，可直接访问或通过类名访问，可声明静态成员
+			2.只能直接访问外部类的静态成员（实例成员需实例化外部类对象）
+
+				Outer.Inner inner = new Outer.Inner();
+				Outer.Inner.show(); 
+
+				例：
+
+					public class InnerClassTest2 {
+
+						public static void main(String[] args) {
+
+							Outer2.Inner2 inner = new Outer2.Inner2();
+							Outer2.Inner2.print();
+						}
+					}
+
+					class Outer2{
+
+						static class Inner2{
+
+							public static void print(){
+
+								System.out.println("Outer2");
+							}
+						}
+					}
+		3.局部内部类
+
+			1.定义在外部类方法中，作用范围和创建对象范围仅限于当前方法
+			2.局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final
+			3.限制类的使用范围
+
+			例：
+
+				public class InnerClassTest3 {
+
+					public static void main(String[] args) {
+
+						Outer3 outer3 = new Outer3();
+						outer3.show();
+
+					}
+				}
+
+				class Outer3{
+
+					final int i = 10;
+					public void show(){
+
+						class Inner3 {
+
+
+							public void print() {
+
+								System.out.println("Local inner classes" + i);
+							}
+						}
+						Inner3 inner3 = new Inner3();
+						inner3.print();
+					}
+				}
+
+		4.匿名内部类
+
+			1.没有类名的局部内部类（一切特征都与局部内部类相同）
+			2.必须继承一个父类或实现一个接口
+			3.定义类、实现类、创建对象的语法合并，只能创建一个该类的对象
+			4.优点：减少代码量
+			5.缺点：可读性较差
+
+			例：
+
+				public class InnerClassTest4 {
+
+					public static void main(String[] args) {
+
+						Outer4 outer4 = new Outer4();
+						outer4.eat(new Duck() {
+							@Override
+							public void eat() {
+								System.out.println("duck eat");
+							}
+						});
+					}
+				}
+
+				class Outer4{
+
+					//继承式的匿名内部类
+					public void print(){
+
+						Duck duck = new Duck() {
+							@Override
+							public void eat() {
+								System.out.println("duck eat");
+							}
+						}
+					}
+
+					//接口式的匿名内部类
+					public void print2(){
+
+						Run run = new Run() {
+							@Override
+							public void run() {
+								System.out.println("duck run");
+							}
+						};
+					}
+
+					//参数式的匿名内部类
+					public void eat(Duck duck){
+						duck.eat();
+					}
+				}
+
+				interface Run{
+
+					public void run();
+				}
+
+				abstract class Duck{
+
+					public abstract void eat();
+				}
+	
+	问题：
+
+		局部内部类访问局部变量必须用final修饰，为什么？
+
+		局部变量的生命周期与内部类里面的对象的生命周期无法相同，此时变量必须用final进行修饰
+		在1.8之后，默认加final
+
+55.基本数据类型包装类
+
+	什么是包装类？
+
+		在Java中有一个设计的原则“一切皆对象”，Java中的基本数据类型就完全不符合这种设计思想，因为八种数据类型并不是引用数据类型，所有Java中为了解决这样的问题，引入了八种基本数据类型的包装类，并在JDK5.0引入自动装箱拆箱来简化操作
+		
+	包装类对应
+
+		八种包装类分为两大类型：
+
+			父类型		基本数据类型		包装类型
+			number		byte				Byte
+						short				Short
+						int					Integer
+						long				Long
+						float				Float
+						double				Double
+			Object		boolean				Boolean
+						char				Character
+
+	类型转换与装箱、拆箱
+
+		8种包装类提供不同类型间的转换方式：
+
+			1.Number父类中提供6个共性方法
+			2.parseXXX()静态方法（除了Character）
+			3.valueOf()静态方法
+
+			注：
+
+				1.需保证类型兼容，否则抛出NumberFormatException异常
+				2.JDK5.0之后，自动装箱、拆箱。
+				3.基本数据类型和包装类自动转换
+				4.转型操作时，字符串必须由数字组成，否则会出现错误哟
+
+	整数缓冲区：
+
+		1.Java预先创建了256个常用的整数包装类型对象
+		2.在实际应用当中，对已创建的对象进行复用
+
+		运用共享技术有效的支持大量细粒度的对象
+
+56.包和访问修饰符
+
+	包的定义：
+
+		包用于对多个Java源文件的管理，就像我们的文件目录一样
+
+		定义一个包：
+
+			package com.weige;
+
+			该语句只能出现在代码中的第一句		
+
+	访问权限修饰符
+
+		private：本类
+		default：本类 + 包名
+		protected：本类 + 包名 + 非同包子类
+		public：本类 + 包名 + 非同包子类 +其他
+
+57.异常与分类
+
+	异常概念：
+
+		异常是阻止当前方法或作用域继续执行的问题，导致程序中断运行的一些指令
+
+	异常处理的必要性：
+
+		1.任何程序都可能存在大量的未知问题、错误
+		2.如果不对这些问题进行正确处理，则可能导致程序的中断，造成不必要的损失
+
+	异常的分类：
+
+		Throwable：可抛出的，一切错误或异常的父类，位于java.lang包中
+
+			Error：JVM、硬件、执行逻辑错误，不能手动处理
+			Exception：程序在运行和配置中产生的问题，可处理
+				RuntimeException：运行时异常，可处理，可不处理
+				CheckedException：受检异常，必须处理
+
+	异常的产生：
+
+		自动抛出异常：
+
+			当程序在运行时遇到不符合规范的代码或结果时，会产生异常
+		
+		手动抛出异常：
+
+			语法：
+
+				throw new 异常类型("实际参数");
+		
+		产生异常结果：
+
+			相当与遇到return语句，导致程序因异常而终止
+		
+		异常的传递：
+
+			按照方法的调用链反向传递，如始终没有处理异常，最终会由JVM进行默认异常处理（打印堆栈跟踪信息）
+
+	异常的处理：
+
+		try{
+
+			//可能出现异常的代码
+		}catch(Exception E){
+
+			//异常处理的相关代码，如：getMessage()、printStackTrace()
+		}finally{
+
+			//无论是否出现异常，都需执行的代码结构，常用于释放资源
+		}
+
+		常见异常处理结构
+
+			1.try{} catch{}
+			2.try{} catch{} catch{}
+			3.try{} catch{} finally{}
+			4.try{} catch{} catch{} finally{}
+			5.try{} catch{}
+
+			注：
+
+				多重catch，遵循从子（小）到父（大）的顺序，父类异常在最后
+
+58.异常处理机制
+
+	throw与throws关键字
+
+		throws关键字主要在方法的声明上使用，表示方法中不处理异常，而交给调用处处理。
+		实际上对于Java程序来讲，如果没有加入任何的异常处理，默认由JVM进行异常的处理操作。
+
+		throw关键字表示在程序中手动抛出一个异常，因为从异常处理机制来看，所有的异常一旦产生之后，实际上抛出的就是一个异常类的实例化对象，那么此对象也可以由throw直接抛出。	
+		
+		public class LoginService {
+
+			public void login(String name, String password)throws Exception{
+
+				if (!"weige".equals(name)) {
+					throw new Exception("the username is wrong, please contact the manager");
+				}
+				if (!"a".equals(password)) {
+					throw new Exception("the password is wrong, please contact the manager");
+				}
+				System.out.println("welcome : "+name);
+			}
+		}
+		public class LoginServiceTest {
+
+			public static void main(String[] args) {
+
+				LoginService loginService = new LoginService();
+				try {
+					loginService.login("weige","a");
+				}catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+
+59.自定义异常
+
+	概念：	
+
+		需继承Exception或Exception的子类，代表特定问题
+	
+	经验：
+
+		异常类型名称见名知义，可在发生特定问题时抛出特定的异常
+	
+	作用：
+
+		异常类仅用于描述异常的信息
+	
+	实现自定义异常
+
+		方式：
+
+			自定义异常类继承Exception
+			子类使用构造方法接受异常信息
+				常用构造方法：
+
+					无参数构造方法
+					String message参数的构造方法
+			
+		注：
+
+			异常类看起来就是语义的作用，为应用提供见名知意的效果
+		
+		技巧：
+
+			通过异常处理机制来处理业务逻辑上的错误是很常见的开发技巧
+
+60.可视化Debug技术
+
+	IDEADebug
+
+		断点：
+
+			指的是调试模式运行程序时，当代码执行到被设置为“断点”的代码时，程序中断运行，那么此处被称为断点
+
+61.字符串操作类
+
+	String类的两种创建方式
+
+		Java程序中，所有使用双引号括起来的字符串文本，都是一个String类型的对象
+		字符串字面值是常量，创建之后不可改变
+
+		1.	直接赋值创建：String name = "weige";
+
+			直接赋值的方式，现在字符串常量池中查找有没有这个字符串对象，
+			如果有引用，直接指向它
+			如果没有，在常量池中创建字符串对象
+
+		2.通过new关键字调用构造方法调用：String name = new String("weige");
+
+			通过new关键字的方式，现在堆中创建字符串对象，然后尝试在常量池中也创建对象
+			如果常量池中已经有相同的字符串对象，略过
+			如果常量池中没有对象，则在常量池中创建一个对象
+
+			以下代码会创建两个对象
+
+				String s = new String("abs");
+			
+	String常用方法
+
+		1.public char charAt(int index)：根据下标获取字符
+		2.public boolean contains(String str)：判断当前字符串中是否包含str
+		3.public char[] toCharArray()：将字符串转换成数组
+		4.public int indexOf(String str)：查找str首次出现的下标，存在，则返回该下标；不存在，则返回-1
+		5.public int length()：返回字符串的长度
+		6.public String trim()：去掉字符串前后的空格
+		7.public String toUpperCase()：将小写转成大写
+		8.public boolean endWith(String str)：判断字符串是否以str结尾
+		9.public String replace(char oldChar,char newChar)：将旧字符串替换成新字符串
+	   10.public String[] split(String str)：根据str做拆分
+	   11.public String substring(int beginIndex,int endIndex)：在字符串中截取一个子字符串
+
+	字符串相加的编译期与运行期
+
+		/**
+		* 2022/8/5
+		* PACKAGE_NAME
+		*/
+		public class Test1 {
+
+			public static void main(String[] args) {
+				//字符串相加，如果编译期值可以被确定，那么就直接引用字符串对象
+				//如果编译期不能被确定，那么在运行期会创建对象
+				String a = "a";
+				String a1 = a + 1;
+				String a2 = "a1";
+				System.out.println(a1 == a2);//false
+
+				final String b = "b";
+				String b1 = b + 1;
+				String b2 = "b1";
+				System.out.println(b1 == b2);//true
+
+				String c = getC();
+				String c1 = c + 1;
+				String c2 = "c1";
+				System.out.println(c1 == c2);//false
+
+				final String d = getD();
+				String d1 = d + 1;
+				String d2 = "d1";
+				System.out.println(d1 == d2);//false
+			}
+
+			private static String getC(){
+				return "c";
+			}
+			private static String getD(){
+				return "d";
+			}
+		}
+
+	可变字符串
+
+		概念：
+
+			可在内存中创建可变的缓冲空间，存储频繁变换的字符串
+
+		常用方法：
+
+			public StringBuilder append(String str)
+
+			StringBuilder：可变长字符串，JDK5.0提供，运行效率快、线程不安全
+			StringBuffer：可变长字符串，JDK1.0提供，运行效率慢、线程不安全
+
+			public class Test2 {
+
+				public static void main(String[] args) {
+
+					StringBuilder stringBuilder = new StringBuilder();
+					for (int i = 0; i < 100; i++) {
+						stringBuilder.append(i);
+
+					}
+					System.out.println(stringBuilder.toString());
+
+					StringBuffer stringBuffer = new StringBuffer();
+					for (int i = 0; i < 100; i++) {
+						stringBuffer.append(i);
+
+					}
+					System.out.println(stringBuffer.toString());
+				}
+			}
+
+62.日期操作类
+
+	Date类
+
+		Date表示特定的瞬间，精确到毫秒
+		Date类中的大部分方法都已经被Calender类中的方法所取代
+
+	Calender类
+
+		Calender提供了获取或设置各种日历字段的方法
+		protected Calender() 构造方法为protected修饰，无法直接创建该对象
+
+	SimpleDateFormat类
+
+		SimpleDateFormat是以与语言环境有关的方式来格式化和解析日期的类
+		进行格式化（日期->文本）、解析（文本->日期）
+
+63.数字处理工具类
+
+	BigDecimal类
+
+		作用：精确计算浮点数
+
+		进行除法运算时，如果不能准确的计算出结果时需要指定保留的位数和取舍方式		
+		除法：divide(BigDecimal bd,int scal,RoundingMode mode)
+		参数 scal：指定精确到小数后几位
+		参数mode：指定小数部分的取舍模式，通常采用四舍五入的模式
+			取值为：BigDecimal.ROUND_HALF_UP
+
+64.算法
+
+	算法的两个纬度
+
+		算法复杂度又分为时间复杂度和空间复杂度
+
+		时间复杂度：
+
+			是指执行算法所需要的计算工作量
+		
+		空间复杂度：
+
+			是指执行这个算法所需要的内存空间
+
+	冒泡排序：
+
+		/**
+		* 2022/8/6
+		* PACKAGE_NAME
+		*/
+		public class BubbleSort {
+
+			public static void main(String[] args) {
+
+				int[] nums = {1, 5, 0, 88, 66};
+				for (int i = 0; i < nums.length-1; i++) {
+					for (int j = 0; j < nums.length-1-i; j++) {
+						if (nums[j]>nums[j+1]){
+							nums[j] = nums[j] + nums[j + 1];
+							nums[j + 1] = nums[j] - nums[j + 1];
+							nums[j] = nums[j] - nums[j + 1];
+						}
+					}
+				}
+				for (int i = 0; i < nums.length; i++) {
+					System.out.println(nums[i]);
+				}
+			}
+		}
+
+	选择排序：
+
+		/**
+		* 2022/8/6
+		* PACKAGE_NAME
+		*/
+		public class SelectionSort {
+
+			public static void main(String[] args) {
+
+				int[] nums = {5, 6, 88, 1, 0};
+				int minIndex = 0;
+				for (int i = 0; i < nums.length-1; i++) {
+					minIndex = i;
+					for (int j = i+1; j <nums.length ; j++) {
+
+						if (nums[minIndex] > nums[j]) {
+							minIndex = j;
+						}
+					}
+					if (minIndex!=i){
+						nums[minIndex] = nums[minIndex] + nums[i];
+						nums[i] = nums[minIndex] - nums[i];
+						nums[minIndex]=nums[minIndex]-nums[i];
+					}
+				}
+				for (int i = 0; i < nums.length; i++) {
+
+					System.out.println(nums[i]);
+				}
+
+			}
+		}
+
+	直接排序：
+
+		/**
+		* 2022/8/6
+		* PACKAGE_NAME
+		*/
+		public class InsertionSort {
+
+			public static void main(String[] args) {
+
+				int[] nums = {22, 25, 36, 5, 60};
+				int temp = 0;
+				int j = 0;
+				for (int i = 1; i <nums.length ; i++) {
+
+					temp = nums[i];
+					j = 0;
+					for ( j = i - 1; j >= 0; j--) {
+						if (nums[j] > temp) {
+							nums[j + 1] = nums[j];
+						}else{
+							break;
+						}
+
+					}
+					if (nums[j + 1] != temp) {
+						nums[j + 1] = temp;
+
+					}
+				}
+				for (int i = 0; i < nums.length; i++) {
+					System.out.println(nums[i]);
+				}
+			}
+		}
+	
+	二分查找：
+
+		/**
+		* 2022/8/6
+		* PACKAGE_NAME
+		*/
+		public class BinarySearchDemo {
+
+			public static void main(String[] args) {
+
+				int[] nums = {10, 50, 60, 440, 1111};
+				System.out.println(binarySearch(nums, 5));
+			}
+
+			public static int binarySearch(int[] nums, int date) {
+
+				int start = 0;
+				int end = nums.length - 1;
+
+				while (start <= end) {
+
+					int mid = (start + end) / 2;
+					if (nums[mid] > date) {
+						end = mid - 1;
+					} else if (nums[mid] < date) {
+						start = mid + 1;
+					} else {
+						return nums[mid];
+					}
+
+				}
+				return -1;
+			}
+		}
+
+		随机数：
+
+			import java.util.Random;
+
+			/**
+			* 2022/8/7
+			* PACKAGE_NAME
+			*/
+			public class RandomNumsDemo {
+
+				public static void main(String[] args) {
+
+					int[] nums = new int[100];
+					for (int i = 0; i < 100; i++) {
+						nums[i] = i + 1;
+					}
+					int[] results = new int[10];
+					getRandomNum(nums, results);
+					for (int i = 0; i < results.length; i++) {
+						System.out.println(results[i]);
+					}
+				}
+
+				private static void getRandomNum(int[] nums, int[] results) {
+
+					Random r = new Random();
+					int temp = 0;
+					for (int i = 0; i < results.length; i++) {
+						int index=r.nextInt(nums.length-i);
+						results[i] = nums[index];
+						temp = nums[index];
+						nums[index] = nums[nums.length - 1 - i];
+						nums[nums.length - 1 - i] = temp;
+					}
+				}
+			}
+
+65.线程	
+
+	什么是进程？
+
+		程序是静止的，只有真正运行时的程序，才被称为进程
+		单核CPU在任何时间点上，只能运行一个进程；宏观并行、微观串行
+	
+	什么是线程？
+
+		是进程中的一个执行路径，共享同一个进程内存空间，线程之间可以自由切换，并发执行，一个进程最少有一个线程（单线程程序），线程也是CPU的基本调度单位。进程有多个线程组成，彼此间完成不同的工作，交替执行，称为多线程。
+
+		迅雷是一个进程，当中的多个下载任务即是多个线程
+		Java虚拟机是一个进程，当中默认包含主线程（Main），可通过代码创建多个独立线程，与Main并发执行
+
+	进程和线程的区别
+
+		1.进程是操作系统资源分配的基本单位
+		  线程是CPU的基本调度单位
+		2.一个程序运行后至少有一个进程
+		3.一个进程可以包含多个线程，但是至少需要有一个线程
+		4.进程间不能共享数据段地址，但同进程的线程之间可以
+	
+	线程的组成
+
+		任何一个线程都具有基本的组成部分：
+
+			CPU时间片：操作系统（OS）会为每个线程分配执行时间
+
+			运行数据：
+
+				堆空间：
+
+					存储线程需使用的对象，多个线程可以共享堆中的对象
+				
+				栈空间：
+
+					存储线程需使用的局部变量，每个线程都拥有独立的栈
+
+66.线程的两种实现方式
+
+	
+	
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+	
+
+
+		
+
+
+
+
+
